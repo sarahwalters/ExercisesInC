@@ -1,4 +1,7 @@
-/*
+/* Sarah Walters
+   Exercises in C 01 Solution
+   Software Systems Spring 2017
+
    Questions:
    - is it kosher to use the word "string" in C documentation?
      I know they're really char arrays, but "string" is a useful
@@ -9,6 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 
 /* Reads command line input into a buffer.
    *prompt: pointer to the input prompt string
