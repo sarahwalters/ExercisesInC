@@ -5,34 +5,18 @@
 
 1) Give an example of a feature common in interpreted languages that is rare in compiled languages.
 
-Interpreted languages commonly have dynamic typing, while compiled languages are usually limited to static types.
-
 2) Name two advantages of static typing over dynamic typing.
-
-- Static typing helps the programmer find errors more efficiently -- type errors are caught at compile time, not at run time.
-- Static typing lets programs run faster -- once a program is running, it can assume that variables have the types they are declared to have, so typechecking while running isn't necessary. (Languages with dynamic typing have to typecheck at runtime).
 
 3) Give an example of a static semantic error.
 
-A static semantic error might tell you that a function is being called with the wrong number of arguments.
-
 4) What are two reasons you might want to turn off code optimization?
 
-- Code optimization takes time, so if you're developing code and iterating quickly by running the code frequently, your process will be faster if you don't have to wait for optimization to happen.
-- The more code optimization you're asking for, the more the compiler is changing your code on its way to machine language. Optimization isn't supposed to alter the function of your code, but the more you're letting the optimization process change your code, the more likely it is that function is altered accidentally. ThinkOS recommends turning off optimization while you develop, then turning it on again at the end and making sure your tests still pass.
-
 5) When you run `gcc` with `-S`, why might the results look different on different computers?
-
-Running `gcc` with `-S` compiles to Assembly. `gcc` is usually configured to generate code for the architecture of the computer it's running on -- different architectures correspond to different flavors of Assembly.
 
 6) If you spell a variable name wrong, or if you spell a function name wrong,
 the error messages you get might look very different.  Why?
 
-The compiler catches variable name misspellings, but the linker catches function name misspellings.
-
 7) What is a segmentation fault?
-
-A segmentation fault occurs when you try to operate on a memory location in a way that isn't allowed (e.g. you try to write to a constant).
 
 ## Chapter 2
 
@@ -41,23 +25,13 @@ A segmentation fault occurs when you try to operate on a memory location in a wa
 
 1) Give a real-world example of virtualization (ideally not one of the ones in the book).
 
-Even though paper is clearly an expendable resource and it's possible to run out of it, the people who restock supplies at Olin present the illusion that the printers in the academic center never run out of paper -- there's almost always plenty of paper, and if there's not, anyone can send an email requesting more.
-
 2) What is the difference between a program and a process?
-
-A program is a collection of source code which can be run. A process is an abstraction which encapsulates running programs.
 
 3) What is the primary purpose of the process abstraction?  What illusion does the process abstraction create?
 
-Processes isolate programs from each other so that one running program doesn't accidentally impact other running programs. The process abstraction creates the illusion that each program is running on its own individual computer.
-
 4) What is the kernel?
 
-The kernel is the part of the operating system responsible for core capabilities -- it's the lowest level of software.
-
 5) What is a daemon?
-
-A daemon is a process which runs in the background instead of running interactively, facing the user.
 
 ## Chapter 3
 
