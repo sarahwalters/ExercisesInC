@@ -23,7 +23,7 @@ Maybe the message indicating that the program was done writing the file indicate
 
 5) Can you think of one advantage of a File Allocation Table over a UNIX inode?  Or an advantage of a inode over a FAT?
 
-TODO
+It's easier to move files if you're using inodes -- moving the pointer to an inode moves the file, while with FAT you have to move both the metadata and the block itself.
 
 6) What is overhead?  What is fragmentation?
 
