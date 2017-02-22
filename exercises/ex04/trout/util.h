@@ -46,8 +46,3 @@ ssize_t Recvfrom(int fd, void *ptr, size_t nbytes, int flags,
          struct sockaddr *sa, socklen_t *salenptr);
 void err_sys (char *fmt, ...);
 void err_quit (char *fmt, ...);
-
-
-// TODO
-// void Sendto(int fd, const void *ptr, size_t nbytes, int flags,
-//         const struct sockaddr *sa, socklen_t salen);
