@@ -33,6 +33,6 @@ The inode has one pointer to a triple indirection block which can reference 2^11
 
 So, all told, the inode can reference 12 + 2^11 + 2^22 + 2^33 blocks -- which is precisely 8,594,130,956 blocks, but the 2^33 term dominates so I'm going to use it for the sake of estimation.
 
-Assuming a block is 8 KiB, the inode can reference about 2^33 blocks * (8 * 2^10) bytes/block -- or, 2^33 * 2^13 = 2^46 bytes. 2^46 bytes is 2^6 * (2^10)^4 = 64 TiB. (impractically large!)
+Assuming a block is 8 KiB, the inode can reference about 2^33 blocks * (8 * 2^10) bytes/block -- or, 2^33 * 2^13 = 2^46 bytes. 2^46 bytes is 2^6 * (2^10)^4 = **64 TiB**. (impractically large!)
 
 [Checking my 2^33 approximation with a calculator: 8,594,130,956 blocks * (8 * 2^10) bytes/block = 7.04 * 10^13 bytes. Sure enough -- 64 TiB is 7.04 * 10^13 bytes].
