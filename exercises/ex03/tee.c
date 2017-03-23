@@ -1,4 +1,9 @@
-// PAGE 149
+/* Author: Sarah Walters
+ *
+ * TEE
+ * Mimics the Unix "tee" command -- reads standard input and writes to
+ * standard output as well as one or more files.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
