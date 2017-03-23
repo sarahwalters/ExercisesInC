@@ -1,11 +1,9 @@
-/* Example code for Exercises in C.
-
-Based on an example from http://www.learn-c.org/en/Linked_lists
-
-Copyright 2016 Allen Downey
-License: Creative Commons Attribution-ShareAlike 3.0
-
-*/
+/*
+ * Author: Sarah Walters
+ * Based on Exercises in C scaffolding, copyright Allen Downey
+ *
+ * Linked list implementation
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,7 +15,7 @@ typedef struct node {
 
 
 /* Makes a new node structure.
- * 
+ *
  * val: value to store in the node.
  * next: pointer to the next node
  *
@@ -32,7 +30,7 @@ Node *make_node(int val, Node *next) {
 
 
 /* Prints the values in a list.
- * 
+ *
  * list: pointer to pointer to Node
  */
 void print_list(Node **list) {
@@ -48,29 +46,32 @@ void print_list(Node **list) {
 
 
 /* Removes and returns the first element of a list.
- * 
+ *
  * list: pointer to pointer to Node
  *
  * returns: int or -1 if the list is empty
  */
 int pop(Node **list) {
-    // FILL THIS IN!
-    return 0;
+    Node *head = *list;
+    *list = head->next;
+    return head->val;
 }
 
 
 /* Adds a new element to the beginning of the list.
- * 
+ *
  * list: pointer to pointer to Node
  * val: value to add
  */
 void push(Node **list, int val) {
-    // FILL THIS IN!
+    Node *new_head = make_node(val, NULL);
+    new_head->next = *list;
+    *list = new_head;
 }
 
 
 /* Removes the first element with the given value
- * 
+ *
  * Frees the removed node.
  *
  * list: pointer to pointer to Node
@@ -79,7 +80,39 @@ void push(Node **list, int val) {
  * returns: number of nodes removed
  */
 int remove_by_value(Node **list, int val) {
-    // FILL THIS IN!
+    Node *previous;
+    Node *current = *list;
+
+    // Catch the empty list case
+    if (current == NULL) {
+        return 0;
+    }
+
+    // Check the first node
+    if (current->val == val) {
+        *list = current->next;
+        return 1;
+    }
+
+    // Check the middle of the list
+    while (current->next != NULL) {
+        if (current->next->val == val) {
+            current->next = current->next->next;
+            return 1;
+        }
+        previous = current;
+        current = current->next;
+    }
+
+    // Check the last node
+    if (current->val == val) {
+        if (previous != NULL) {
+            previous->next = NULL;
+        } else {
+            *list = NULL;
+        }
+    }
+
     return 0;
 }
 
@@ -87,13 +120,34 @@ int remove_by_value(Node **list, int val) {
 /* Reverses the elements of the list.
  *
  * Does not allocate or free nodes.
- * 
+ *
  * list: pointer to pointer to Node
  */
 void reverse(Node **list) {
-    // FILL THIS IN!
-}
+    Node *previous = NULL;
+    Node *current = *list;
+    Node *temp;
 
+    // Catch the empty or single-element list cases
+    if (current == NULL || current->next == NULL) {
+        return;
+    }
+
+    while (current != NULL) {
+        // save "next" to be the new current
+        temp = current->next;
+
+        // point current's next backwards
+        current->next = previous;
+
+        // update running pointers
+        previous = current;
+        current = temp;
+    }
+
+    // update list pointer
+    *list = previous;
+}
 
 int main() {
     Node *head = make_node(1, NULL);
