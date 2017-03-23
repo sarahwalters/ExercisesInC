@@ -53,6 +53,12 @@ void print_list(Node **list) {
  */
 int pop(Node **list) {
     Node *head = *list;
+
+    // Handle thes empty list case
+    if (head == NULL) {
+        return -1;
+    }
+
     *list = head->next;
     return head->val;
 }
@@ -83,7 +89,7 @@ int remove_by_value(Node **list, int val) {
     Node *previous;
     Node *current = *list;
 
-    // Catch the empty list case
+    // Handle the empty list case
     if (current == NULL) {
         return 0;
     }
@@ -128,7 +134,7 @@ void reverse(Node **list) {
     Node *current = *list;
     Node *temp;
 
-    // Catch the empty or single-element list cases
+    // Handle the empty and single-element list cases
     if (current == NULL || current->next == NULL) {
         return;
     }
