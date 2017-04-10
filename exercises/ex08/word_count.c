@@ -130,7 +130,7 @@ int print_histogram(char* filename) {
     // Free memory
     g_free(content);
     g_strfreev(split_content);
-    g_hash_table_destroy(histogram); // TODO: free the malloced values
+    g_hash_table_destroy(histogram);
     g_slist_free_full(list, destroy_histogram_entry);
 
     return 0;
