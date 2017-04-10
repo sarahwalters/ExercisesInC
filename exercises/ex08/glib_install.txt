@@ -1,0 +1,9 @@
+1. Download glib-2.50.3 from http://ftp.gnome.org/pub/gnome/sources/glib/2.50/
+2. Extract files from the tar
+3. cd to the extracted directory and try to run ./configure
+4. Install any dependency packages which are missing. For me:
+   - sudo apt-get install libffi-dev libmount-dev libpcre3-dev
+5. ./configure
+6. make
+7. make install
+8. glib is installed in /usr/local/lib/glib-2.0
