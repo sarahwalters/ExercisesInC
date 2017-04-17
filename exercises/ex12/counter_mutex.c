@@ -3,6 +3,8 @@
 
        Copyright 2014 Allen B. Downey
        License: Creative Commons Attribution-ShareAlike 3.0
+
+       Modified by Sarah Walters for ExercisesInC
 */
 
 #include <stdio.h>
