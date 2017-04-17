@@ -80,6 +80,7 @@ typedef struct {
     int counter;
     int end;
     int *array;
+    Semaphore *mutex;
 } Shared;
 
 /*  make_shared
@@ -97,6 +98,7 @@ Shared *make_shared (int end)
 
     shared->counter = 0;
     shared->end = end;
+    shared->mutex = make_semaphore (1);
 
     shared->array = check_malloc (shared->end * sizeof(int));
     for (i=0; i<shared->end; i++) {
@@ -157,15 +159,20 @@ void child_code (Shared *shared)
     printf ("Starting child at counter %d\n", shared->counter);
 
     while (1) {
-	    if (shared->counter >= shared->end) {
-	        return;
-	    }
-	    shared->array[shared->counter]++;
-	    shared->counter++;
+        if (shared->counter >= shared->end) {
+            return;
+        }
 
-	    if (shared->counter % 100000 == 0) {
-	        printf ("%d\n", shared->counter);
-	    }
+        sem_wait (shared->mutex);
+
+        shared->array[shared->counter]++;
+        shared->counter++;
+
+        if (shared->counter % 100000 == 0) {
+            // printf ("%d\n", shared->counter);
+        }
+
+        sem_signal (shared->mutex);
     }
 }
 
@@ -199,7 +206,7 @@ void check_array (Shared *shared)
     printf ("Checking...\n");
 
     for (i=0; i<shared->end; i++) {
-	    if (shared->array[i] != 1) errors++;
+        if (shared->array[i] != 1) errors++;
     }
     printf ("%d errors.\n", errors);
 }
@@ -217,11 +224,11 @@ int main ()
     Shared *shared = make_shared (100000000);
 
     for (i=0; i<NUM_CHILDREN; i++) {
-	   child[i] = make_thread (entry, shared);
+        child[i] = make_thread (entry, shared);
     }
 
     for (i=0; i<NUM_CHILDREN; i++) {
-	    join_thread (child[i]);
+        join_thread (child[i]);
     }
 
     check_array (shared);
