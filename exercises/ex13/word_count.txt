@@ -1,0 +1,3 @@
+I completed the valgrind / word_count exercise for fun when I wrote my own word_count program (in [this directory](../ex08) -- see the Makefile and word_count.c for work).
+
+I'm having one potential issue: valgrind indicates that 18,604 bytes in 6 blocks were still reachable -- high compared to Allen's 2,116 bytes. I discussed with Allen and he suggested that I assign all malloced (manually or via glib functions) variables to NULL at the end of each method to leak the memory so valgrind catches it; I did, and there were no leaks and the same 18,604 bytes still reachable. I'll discuss with a ninja/professor at some point.
